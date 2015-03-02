@@ -139,9 +139,46 @@ button.help-button
 .form-igt-data div.dative-tooltip,
 .form-igt-data span.dative-tooltip,
 .form-translations-data div.dative-tooltip,
-.form-translations-data span.dative-tooltip
+.form-translations-data span.dative-tooltip,
+.dative-field-label.dative-tooltip
 {
     cursor: pointer;
+}
+
+.dative-field-validation-container
+{
+  display: inline-block;
+  width: 0%;
+}
+
+.dative-field-label-container
+{
+  display: inline-block;
+  width: 25%;
+  vertical-align: top;
+}
+
+.update-form-widget .dative-field-label-container
+{
+  width: 35%;
+}
+
+.dative-field-subinput-container
+{
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 0.4em;
+}
+
+.dative-field-input-container
+{
+  display: inline-block;
+  width: 60%;
+}
+
+.update-form-widget .dative-field-input-container
+{
+  width: 50%;
 }
 
 .form-secondary-data-content .form-fielddb-comment:not(:first-child)
@@ -327,6 +364,7 @@ div.dative-page-header-title
 .add-user-widget,
 .edit-corpus-widget,
 .add-form-widget,
+.update-form-widget,
 .dative-form-object.expanded
 {
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
@@ -392,7 +430,12 @@ ul.fieldset label {
 div.form-add-form ul.fieldset label,
 .formAdd ul.fieldset label
 {
-    width: 150px;
+    min-width: 90%;
+    max-width: 90%;
+    width: 90%;
+    padding-right: 2%;
+    float: right;
+    text-align: right;
 }
 
 .applicationSettingsForm ul.fieldset label {
@@ -439,7 +482,7 @@ div.form-add-form ul.fieldset label,
 .fieldset select.grammaticality,
 .fieldset input.judgement
 {
-  width: 2.2em;
+  width: 5%;
 }
 
 .fieldset input.judgement
@@ -476,13 +519,67 @@ ul.fieldset input[type="password"] {
     margin-right: 0;
     padding: 6px 10px 6px 10px;
 }
-ul.fieldset textarea,
+
+/*ul.fieldset textarea,*/
 div.applicationSettingsForm input,
-div.dative-display {
+div.dative-display
+{
     width: 526px;
     max-width: 526px;
     min-width: 526px;
 }
+
+ul.fieldset textarea.textarea-only,
+textarea.textarea-only
+{
+  width: 94.1%;
+  max-width: 94.1%;
+  min-width: 94.1%;
+}
+
+
+ul.fieldset textarea.textarea-select-button,
+textarea.textarea-select-button
+{
+  width: 76.5%;
+  /* max-width: 76.5%;
+  min-width: 76.5%; */
+}
+
+ul.fieldset textarea.textarea-button,
+textarea.textarea-button
+{
+  width: 87%;
+}
+
+ul.fieldset textarea.textarea-select,
+textarea.textarea-select
+{
+  width: 84%;
+  /* max-width: 85%;
+  min-width: 85%; */
+}
+
+ul.fieldset textarea.textarea-input,
+textarea.textarea-input
+{
+  width: 83.5%;
+}
+
+ul.fieldset input.judgement,
+input.judgement
+{
+  width: 5%;
+}
+
+ul.fieldset label.dative-field-label,
+label.dative-field-label
+{
+  width: 25%;
+  max-width: 25%;
+  min-width: 25%;
+}
+
 ul.fieldset select[name="elicitation_method"],
 ul.fieldset select[name="syntactic_category"],
 ul.fieldset select[name="speaker"],
@@ -505,6 +602,7 @@ ul.fieldset select+div, /* div siblings of selects are jquery.ui.selectmenu crea
 button.append-translation-field,
 button.remove-translation-field,
 button.removeMe,
+button.new-remove,
 input[type="submit"],
 button {
     display: inline-block;
@@ -540,16 +638,20 @@ div.ui-selectmenu-menu li a {
 ul.fieldset textarea.utterance,
 ul.fieldset textarea.transcription
 {
+  /*
     width: 473px;
     max-width: 473px;
     min-width: 473px;
+    */
 }
 
 ul.fieldset textarea.translation:not(.singular-translation)
 {
+  /*
     width: 441px;
     max-width: 441px;
     min-width: 441px;
+    */
 }
 
 ul.fieldset select,
@@ -597,8 +699,14 @@ h1 {
     height: 102px;
 }
 
-.ms-container {
-    width: 548px;
+div.dative-field-input-container > div.ms-container
+{
+  height: inherit;
+}
+
+.ms-container
+{
+  width: 98.8%;
 }
 
 .ms-container .ms-selectable,
@@ -725,21 +833,24 @@ div.create-corpus-widget {
 }
 
 div.corpus-widget,
-div.create-corpus-widget {
+div.create-corpus-widget
+{
   margin-top: 10px;
   margin-bottom: 20px;
 }
 
 div.add-user-widget,
 div.edit-corpus-widget,
-div.users-widget {
+div.users-widget
+{
   width: 500px;
   margin-top: 10px;
   margin-bottom: 10px;
 }
 
 div.servers-config-widget > div.dative-widget-body,
-div.users-widget div.dative-widget-body {
+div.users-widget div.dative-widget-body
+{
   padding: 10px;
 }
 
@@ -754,13 +865,15 @@ div.server-config-widget input,
 div.add-user-widget input,
 div.edit-corpus-widget textarea,
 div.edit-corpus-widget input,
-div.create-corpus-widget input {
+div.create-corpus-widget input
+{
   max-width: 300px;
   min-width: 300px;
   width: 300px;
 }
 
-div.dative-register-dialog li.register-info span {
+div.dative-register-dialog li.register-info span
+{
   text-align: justify;
   text-justify: inter-word;
   line-height: 130%;
@@ -772,19 +885,22 @@ div.dative-register-dialog li.register-info span {
   min-width: 240px;
 }
 
-div.dative-user-widget {
+div.dative-user-widget
+{
   display: inline-block;
   margin: 10px;
 }
 
-div.dative-user-widget div.dative-widget-body img {
+div.dative-user-widget div.dative-widget-body img
+{
   display: block;
   margin: auto;
 }
 
 div.dative-user-widget div.dative-widget-header div.dative-widget-header-title,
 div.dative-add-user-widget div.dative-widget-header div.dative-widget-header-title,
-div.users-widget > div.dative-widget-header > div.dative-widget-header-title {
+div.users-widget > div.dative-widget-header > div.dative-widget-header-title
+{
   position: static;
   margin: auto;
 }
@@ -793,13 +909,15 @@ div.corpus-widget > div.dative-widget-header,
 div.create-corpus-widget > div.dative-widget-header,
 div.users-widget > div.dative-widget-header,
 div.servers-config-widget > div.dative-widget-header,
-div.server-config-widget > div.dative-widget-header {
+div.server-config-widget > div.dative-widget-header
+{
   position: relative;
 }
 
 div.add-user-widget > div.dative-widget-header,
 div.edit-corpus-widget > div.dative-widget-header,
-div.users-widget > div.dative-widget-header {
+div.users-widget > div.dative-widget-header
+{
   height: 12px;
 }
 
@@ -811,10 +929,12 @@ div.edit-corpus-widget > div.dative-widget-header > div.dative-widget-header-tit
 div.servers-config-widget > div.dative-widget-header > div.dative-widget-header-title,
 div.server-config-widget > div.dative-widget-header > div.dative-widget-header-title,
 div.add-form-widget > div.dative-widget-header > div.dative-widget-header-title,
+div.update-form-widget > div.dative-widget-header > div.dative-widget-header-title,
 div#dative-page-header > div.dative-page-header-title,
 div#dative-page-header > div.dative-forms-view-header > div.dative-page-header-title,
 div.container-center,
-div.button-container-center {
+div.button-container-center
+{
   position: absolute;
   top: 50%;
   left: 50%;
@@ -822,11 +942,13 @@ div.button-container-center {
   -webkit-transform: translate(-50%, -50%);
 }
 
-div.button-container-center {
+div.button-container-center
+{
   width: 700px;
 }
 
-div.button-container-left {
+div.button-container-left
+{
   /* See http://jsfiddle.net/khrfwjL0/2/ */
   position: absolute;
   left: 0%;
@@ -836,7 +958,8 @@ div.button-container-left {
   padding-left: 5px;
 }
 
-div.button-container-right {
+div.button-container-right
+{
   /* See http://jsfiddle.net/khrfwjL0/2/ */
   position: absolute;
   right: 0%;
@@ -846,7 +969,8 @@ div.button-container-right {
   padding-right: 5px;
 }
 
-div.container-right {
+div.container-right
+{
   position: absolute;
   right: 0;
   top: 20%;
@@ -869,7 +993,8 @@ ul.fieldset select[name="elicitor"],
 ul.fieldset select[name="verifier"],
 ul.fieldset select[name="source"],
 .dative-help-dialog input[type="text"],
-div.dative-display {
+div.dative-display
+{
     border-style: solid;
     border-width: 1px;
     padding: 7px 10px 5px 10px;
@@ -877,12 +1002,6 @@ div.dative-display {
     margin-bottom: 0px;
     height: 16px;
     min-height: 16px;
-    /*
-    -moz-border-radius: 6px;
-    -webkit-border-radius: 6px;
-    -khtml-border-radius: 6px;
-    border-radius: 6px;
-    */
 }
 
 .help-search-container
@@ -999,7 +1118,8 @@ div.dative-display {
 }
 
 
-.header-no-body {
+.header-no-body
+{
     border-bottom: none;
 }
 
@@ -1011,7 +1131,8 @@ ul.sf-menu li ul
 }
 
 /* Multi-select stuff; TODO: remove border-radius stuff? */
-  .ms-container .ms-list{
+.ms-container .ms-list
+{
     -webkit-border-radius: 6px;
     -moz-border-radius: 6px;
     border-radius: 6px;
@@ -1019,7 +1140,8 @@ ul.sf-menu li ul
     background: white;
 }
 
-p.paragraph-widget {
+p.paragraph-widget
+{
     margin: auto;
     width: 500px;
     padding: 10px;
@@ -1048,5 +1170,11 @@ div.add-form-widget
   width: 800px;
   margin-top: -2em;
   margin-bottom: 2em;
+}
+
+div.update-form-widget
+{
+  width: 90%;
+  margin-top: 1em;
 }
 

@@ -1,11 +1,10 @@
 define [
   'backbone'
-  'jquery'
   './../utils/utils'
   './../utils/globals'
   './../utils/tooltips'
   'jqueryuicolors'
-], (Backbone, $, utils, globals, tooltips) ->
+], (Backbone, utils, globals, tooltips) ->
 
   # Base View
   # --------------
@@ -55,6 +54,15 @@ define [
         for renderedSubView in @_renderedSubViews
           renderedSubView.close()
       @onClose?()
+
+    # Sub-views will call this and/or supplement it, e.g.,
+    #   listenToEvents: ->
+    #     super
+    #     @listenTo someView, 'someEvent', @someMethod
+    listenToEvents: ->
+      @stopListening()
+      @undelegateEvents()
+      @delegateEvents()
 
     # Registers a subview as having been rendered by this view
     rendered: (subView) ->
@@ -173,6 +181,11 @@ define [
 
     # Alter the scroll position so that the focused UI element is centered.
     scrollToFocusedInput: (event) ->
+      try
+        @_scrollToFocusedInput event
+
+    # Alter the scroll position so that the focused UI element is centered.
+    _scrollToFocusedInput: (event) ->
       # Small bug: if you tab really fast through the inputs, the scroll
       # animations will be queued and all jumpy. Calling `.stop` as below
       # does nof fix the issue.
@@ -318,4 +331,52 @@ define [
         globals.applicationSettings.get('activeServer').get 'type'
       catch
         null
+
+    getLoggedInUsername: ->
+      try
+        globals.applicationSettings.get 'username'
+      catch
+        null
+
+    # Tooltip position: top-aligned and to the left.
+    # Return a default tooltip position where the tops are aligned and the right
+    # side of the tooltip is `rightOffset` away from the left side of the target.
+    tooltipPositionLeft: (rightOffset='-120') ->
+      my: "right#{rightOffset} top"
+      at: 'left top'
+      collision: 'flipfit'
+
+    # Tooltip position: top-aligned and to the left.
+    # Return a default tooltip position where the tops are aligned and the right
+    # side of the tooltip is `rightOffset` away from the left side of the target.
+    tooltipPositionRight: (leftOffset='+20') ->
+      my: "left#{leftOffset} top"
+      at: 'right top'
+      collision: 'flipfit'
+
+    # Copy the class and title attributes from a <select> to its corresponding
+    # selectmenu button. This permits later "tooltipification".
+    transferClassAndTitle: ($element, selector='.ui-selectmenu-button') ->
+      class_ = $element.attr 'class'
+      title = $element.attr 'title'
+      $element
+        .next selector
+          .addClass "#{class_} dative-tooltip"
+          .attr 'title', title
+
+    grammaticalitySelectmenuWidth: '8%'
+
+    # Take what jQuery's `serializeArray` gives you and return an object.
+    serializeObject: (arrayOfObjects) ->
+      result = {}
+      for object in arrayOfObjects
+        result[object.name] = object.value
+      result
+
+    # Merge an array of objects: _.extend on an array of objects.
+    arrayOfObjectsToObject: (arrayOfObjects) ->
+      result = {}
+      for object in arrayOfObjects
+        _.extend result, object
+      result
 

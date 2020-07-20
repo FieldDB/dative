@@ -2,7 +2,6 @@
   "generator-backbone": {
     "appPath": "app",
     "appName": "Dative",
-    "coffee": true,
     "testFramework": "mocha",
     "templateFramework": "lodash",
     "compassBootstrap": true

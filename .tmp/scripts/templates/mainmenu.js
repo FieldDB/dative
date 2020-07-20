@@ -1,0 +1,48 @@
+define(function(){
+  var template = function(__obj) {
+  var _safe = function(value) {
+    if (typeof value === 'undefined' && value == null)
+      value = '';
+    var result = new String(value);
+    result.ecoSafe = true;
+    return result;
+  };
+  return (function() {
+    var __out = [], __self = this, _print = function(value) {
+      if (typeof value !== 'undefined' && value != null)
+        __out.push(value.ecoSafe ? value : __self.escape(value));
+    }, _capture = function(callback) {
+      var out = __out, result;
+      __out = [];
+      callback.call(this);
+      result = __out.join('');
+      __out = out;
+      return _safe(result);
+    };
+    (function() {
+      _print(_safe('<ul class="sf-menu">\n\n    <li><a>Dative</a>\n        <ul class=\'ui-corner-bottom\'>\n            <li>\n              <a data-event="request:applicationSettingsBrowse"\n                 >Application Settings</a>\n            </li>\n            <li>\n                <a data-event="request:home">Home</a>\n            </li>\n            <li class="requires-authentication">\n                <a data-event="request:pagesBrowse" data-meta="true">Pages</a>\n            </li>\n            <li class=\'requires-authentication fielddb\'>\n                <a data-event="request:corporaBrowse">Corpora</a>\n            </li>\n            <li>\n              <a data-event="request:openRegisterDialogBox"\n                >Register</a>\n            </li>\n            <li class="requires-authentication">\n                <a data-event="request:toggleTasksDialog">Tasks</a>\n            </li>\n        </ul>\n    </li>\n\n    <li class=\'requires-authentication\'><a>Forms</a>\n        <ul class=\'ui-corner-bottom\'>\n            <li class=\'requires-authentication\'>\n                <a data-event="request:formAdd">Add</a>\n            </li>\n            <li class=\'requires-authentication\'>\n                <a data-event="request:searchesBrowse" data-meta="true">Saved Searches</a>\n            </li>\n            <li class=\'requires-authentication\'>\n                <a data-event="request:formsBrowse" data-meta="true">Browse</a>\n            </li>\n            <li class=\'requires-authentication\'>\n                <a data-event="request:formsImport">Import</a>\n            </li>\n        </ul>\n    </li>\n\n    <li class=\'requires-authentication old hideable\'><a>Corpora</a>\n        <ul class=\'ui-corner-bottom\'>\n            <li class=\'requires-authentication\'>\n              <a data-event="request:subcorpusAdd">Add</a>\n            </li>\n            <li class=\'requires-authentication\'>\n              <a data-event="request:subcorporaBrowse" data-meta="true">Browse</a>\n            </li>\n        </ul>\n    </li>\n\n    <li class=\'requires-authentication old hideable\'><a>Resources</a>\n        <ul class=\'ui-corner-bottom\'>\n\n            <li class=\'requires-authentication\'>\n                <a data-event="request:syntacticCategoriesBrowse" data-meta="true"\n                    >Categories</a>\n            </li>\n\n            <li class=\'requires-authentication\'>\n              <a data-event="request:collectionsBrowse" data-meta="true">Collections</a>\n            </li>\n\n            <li class=\'requires-authentication\'>\n                <a data-event="request:elicitationMethodsBrowse" data-meta="true"\n                    >Elicitation Methods</a>\n            </li>\n\n            <li class=\'requires-authentication\'>\n              <a data-event="request:filesBrowse" data-meta="true">Files</a>\n            </li>\n\n            <li class=\'requires-authentication\'>\n                <a data-event="request:keyboardsBrowse" data-meta="true"\n                    >Keyboards</a>\n            </li>\n\n            <li class=\'requires-authentication\'>\n                <a data-event="request:languagesBrowse" data-meta="true">Languages</a>\n            </li>\n\n            <li class=\'requires-authentication\'>\n                <a data-event="request:orthographiesBrowse" data-meta="true">Orthographies</a>\n            </li>\n\n            <li class=\'requires-authentication\'>\n                <a data-event="request:sourcesBrowse" data-meta="true">Sources</a>\n            </li>\n\n            <li class=\'requires-authentication\'>\n                <a data-event="request:speakersBrowse" data-meta="true">Speakers</a>\n            </li>\n\n            <li class=\'requires-authentication\'>\n                <a data-event="request:tagsBrowse" data-meta="true">Tags</a>\n            </li>\n\n            <li class=\'requires-authentication\'>\n              <a data-event="request:usersBrowse" data-meta="true">Users</a>\n            </li>\n\n        </ul>\n    </li>\n\n    <li class=\'requires-authentication old hideable\'><a>Analysis</a>\n        <ul class=\'ui-corner-bottom\'>\n            <li class=\'requires-authentication\'\n              ><a data-event="request:phonologiesBrowse" data-meta="true">Phonologies</a>\n            </li>\n            <li class=\'requires-authentication\'\n              ><a data-event="request:morphologiesBrowse" data-meta="true">Morphologies</a>\n            </li>\n            <li class=\'requires-authentication\'\n              ><a data-event="request:languageModelsBrowse" data-meta="true">Language Models</a>\n            </li>\n            <li class=\'requires-authentication\'\n              ><a data-event="request:morphologicalParsersBrowse" data-meta="true"\n                  >Morphological Parsers</a>\n            </li>\n        </ul>\n    </li>\n\n    <!--\n    <li><a>Files</a>\n        <ul class=\'ui-corner-bottom\'>\n            <li><a data-event="request:fileAdd">Add</a></li>\n            <li><a data-event="request:filesSearch">Search</a></li>\n            <li><a data-event="request:filesBrowse">Browse</a></li>\n        </ul>\n    </li>\n\n    <li><a>Collections</a>\n        <ul class=\'ui-corner-bottom\'>\n            <li><a data-event="request:collectionAdd">Add</a></li>\n            <li><a data-event="request:collectionsSearch">Search</a></li>\n            <li><a data-event="request:collectionsBrowse">Browse</a></li>\n        </ul>\n    </li>\n\n    <li><a>Analysis</a>\n        <ul class=\'ui-corner-bottom\'>\n            <li><a data-event="request:phonology">Phonology</a></li>\n            <li><a data-event="request:analyzedWordsCorpus">\n                Analyzed Words Corpus</a></li>\n            <li><a data-event="request:morphotactics">Morphotactics</a></li>\n            <li><a data-event="request:morphophonology">\n                Morphophonology</a></li>\n            <li><a data-event="request:morphologicalProbabilityCalculator">\n                Morphological Probability Calculator</a></li>\n            <li><a data-event="request:morphologicalParser">\n                Morphological Parser</a></li>\n        </ul>\n    </li>\n\n    <li><a>Dictionary</a>\n        <ul class=\'ui-corner-bottom\'>\n            <li><a data-event="request:dictionarySetup">Setup</a></li>\n            <li><a data-event="request:dictionarySearch">Search</a></li>\n            <li><a data-event="request:dictionaryBrowse">Browse</a></li>\n        </ul>\n    </li>\n\n    <li><a>People</a>\n        <ul class=\'ui-corner-bottom\'>\n            <li><a data-event="request:viewSpeakers">Speakers</a></li>\n            <li><a data-event="request:viewUsers">Users</a></li>\n        </ul>\n    </li>\n\n    <li><a>Tags</a>\n        <ul class=\'ui-corner-bottom\'>\n            <li><a>Tags</a></li>\n            <li><a>Syntactic Categories</a></li>\n            <li><a>Elicitation Methods</a></li>\n        </ul>\n    </li>\n\n    <li><a>Sources</a>\n        <ul class=\'ui-corner-bottom\'>\n            <li><a>Add</a></li>\n            <li><a>Browse</a></li>\n        </ul>\n    </li>\n\n    -->\n\n    <li class=\'hideable\'><a>Help</a>\n        <ul class=\'ui-corner-bottom\'>\n            <li><a data-event="request:toggleHelpDialogBox">Help Page</a></li>\n            <li><a >Version '));
+    
+      _print(this.version);
+    
+      _print(_safe('</a></li>\n        </ul>\n    </li>\n\n    <li class=\'hideable\'><a>Account</a>\n        <ul class=\'ui-corner-bottom\'>\n            <!--\n            <li><a>My Page</a></li>\n            <li><a>My Settings</a></li>\n            <li><a>My Memory</a></li>\n            -->\n            <li><a data-event="request:openLoginDialogBox">Login</a></li>\n        </ul>\n    </li>\n\n    <li class=\'menu-overflow\' style=\'display: none;\'>\n        <a><i class=\'fa fa-fw fa-angle-double-right\'></i></a>\n        <ul class=\'ui-corner-bottom\'></ul>\n    </li>\n\n</ul>\n\n<div class=\'container-center active-corpus-name\'>\n</div>\n\n<div class=\'container-right\'>\n\n    <a class=\'active-keyboard dative-tooltip\'\n       title=\'browse keyboards in a dialog window\'\n        ><i class=\'fa fa-keyboard-o fa-fw\'></i>\n    </a>\n\n  <a class="dative-help" title="help with using Dative">\n    <i class=\'fa fa-question fa-fw\'></i>\n  </a>\n\n  <a class="dative-authenticated" title="login">\n    <i class=\'fa fa-lock fa-fw\'></i>\n  </a>\n\n  <a class="logged-in-username" title="you are not logged in"></a>\n</div>\n\n\n'));
+    
+    }).call(this);
+    
+    return __out.join('');
+  }).call((function() {
+    var obj = {
+      escape: function(value) {
+        return ('' + value)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;');
+      },
+      safe: _safe
+    }, key;
+    for (key in __obj) obj[key] = __obj[key];
+    return obj;
+  })());
+};
+  return template;
+});

@@ -70,9 +70,9 @@ module.exports = (grunt) ->
       jst:
         files: ['<%= yeoman.app %>/scripts/templates/*.ejs']
         tasks: ['jst']
-      eco:
-        files: ['<%= yeoman.app %>/scripts/templates/{,*/}*.eco']
-        tasks: ['eco']
+      # eco:
+      #   files: ['<%= yeoman.app %>/scripts/templates/{,*/}*.eco']
+      #   tasks: ['eco']
       test:
         files: ['<%= yeoman.app %>/scripts/{,*/}*.js', 'test/spec/**/*.js']
         tasks: ['test:true']
@@ -120,9 +120,9 @@ module.exports = (grunt) ->
         #app: 'firefox'
 
     clean:
-      dist: ['.tmp', '<%= yeoman.dist %>/*']
+      dist: ['<%= yeoman.dist %>/*']
       postdist: ['<%= yeoman.dist %>/bower_components']
-      server: '.tmp'
+      server: '.tmpkeep'
       doctmp: '.doctmp'
       docs: 'docs'
 
@@ -528,7 +528,7 @@ module.exports = (grunt) ->
         'coffee:test'
         #'createDefaultTemplate'
         #'jst'
-        'eco'
+        # 'eco'
         #'compass:server'
         'connect:test'
         'open:test'
@@ -545,7 +545,7 @@ module.exports = (grunt) ->
       'coffee:serve'
       #'createDefaultTemplate'
       #'jst'
-      'eco'
+      # 'eco'
       #'compass:server'
       'connect:livereload'
       #'open:server'
@@ -561,7 +561,7 @@ module.exports = (grunt) ->
       'coffee'
       #'createDefaultTemplate'
       #'jst'
-      'eco'
+      #'eco'
       #'compass'
       'connect:test'
       'mocha'
@@ -584,7 +584,7 @@ module.exports = (grunt) ->
 
     # eco: convert all .eco files in app/scripts/templates/ to .js files in
     # .tmp/scripts/templates/
-    'eco'
+    # 'eco'
 
     # permits execution of shell scripts
     'exec:setContinuousDeploymentVersion'
